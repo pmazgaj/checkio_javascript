@@ -14,7 +14,6 @@
 function getSumElemsInObj(object) {
     var sum = 0;
     for (var i = 0; i < object.length; i++)
-        // console.log(typeof object[i])
         sum += object[i];
     return sum;
 }
@@ -67,46 +66,22 @@ function mergeSums(rows, columns) {
     });
     var min = getKeysFromNestedObject(sums);
     var weakest_point = [];
-    // console.log(min);
     var counter = 0;
     var temp_sum = 0;
     var current = 0;
     var points = [];
-    sums.forEach(function (object, iterator) {
-        // console.log(object);
-        Object.keys(object).forEach(function (key, iterator) {
-            // console.log(key);
-            // console.log(object);
-            // console.log(iterator);
-
+    sums.forEach(function (object) {
+        Object.keys(object).forEach(function (key) {
             if (min.toString() === key) {
                 counter += 1;
-                weakest_point = object[key];
-                points.push(weakest_point);
-
-                current = getSumElemsInObj(weakest_point);
-
+                points.push(object[key]);
+                current = getSumElemsInObj(object[key]);
                 if (counter === 1) {
-                    temp_sum = current;
+                  temp_sum = current;
                 }
                 else if (current < temp_sum) {
-                    temp_sum = current;
+                       temp_sum = current;
                 }
-                // console.log(temp_sum);
-                // console.log(iterator);
-                // console.log(so);
-                // if ()
-                // console.log(current);
-
-                // console.log(weakest_point);
-                // current = getSumElemsInObj(weakest_point);
-                // if (counter > 1)
-                // {
-                //     Math.max.apply(null, object[key]);
-                // }
-                // console.log(key);
-                // console.log(object[key]);
-
             }
         });
     });
@@ -119,13 +94,11 @@ function mergeSums(rows, columns) {
             var sum = point[0] + point[1];
             if (sum === temp_sum)
             {
-            console.log(point);
             weakest_point = point;
             }
         });
     }
     return weakest_point;
-    // console.log(temp_sum);
 }
 
 function weakPoint(matrix) {
